@@ -38,8 +38,8 @@ jobs:
 
       - name: Settings up & installing requirements
         run: |
+          cp config.env /source && cp token.pickle /source
           cd source || exit 1
-          wget ${{ secrets.CONFIG_URL }}
           docker container prune --force || true
           docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
           docker image ls
